@@ -1,5 +1,6 @@
 import Image from "next/image";
-import AudioCourse from "./../../public/assets/images/audio-course.png";
+import ImageDark from "./../../public/assets/images/audio-course-dark.png";
+import ImageLight from "./../../public/assets/images/audio-course-light.jpg";
 import AudioLines from "./../../public/assets/images/lucide_audio-lines.png";
 import LayeredImages from "./../../public/assets/images/layered-images-1.png";
 
@@ -31,7 +32,15 @@ const BlankCard = ({ mode }: BlankCardProps) => {
           </button>
         </div>
 
-        <Image alt="Audio course" src={AudioCourse} width={400} height={400} />
+        {/* image */}
+        <div className="relative">
+          <Image
+            alt="Audio course"
+            src={mode === "dark" ? ImageDark : ImageLight}
+            width={400}
+            height={400}
+          />
+        </div>
 
         {/* title x desc */}
         <div className="flex flex-col gap-2">
@@ -85,7 +94,7 @@ const BlankCard = ({ mode }: BlankCardProps) => {
 
 export default function CourseCard() {
   return (
-    <div className="bg-gray-200 h-screen flex items-center justify-center gap-12">
+    <div className="bg-gray-200 p-4 md:h-screen flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
       {/* light */}
       <BlankCard mode="light" />
 

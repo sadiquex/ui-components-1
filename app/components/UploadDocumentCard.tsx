@@ -8,7 +8,7 @@ type DefaultDocumentUploadProps = {
 const DefaultDocumentUpload = ({ mode }: DefaultDocumentUploadProps) => {
   return (
     <div
-      className={`w-[440px] h-[313px] rounded-2xl p-6 flex flex-col justify-between ${
+      className={`w-auto md:w-[440px] h-[313px] rounded-2xl p-6 flex flex-col justify-between ${
         mode === "light" ? "bg-white" : " bg-[#1a1d1f]"
       }`}
     >
@@ -39,7 +39,7 @@ const DefaultDocumentUpload = ({ mode }: DefaultDocumentUploadProps) => {
           <span className="text-[#ff6a55]">Click to upload</span>
         </p>
         <p
-          className={`text-sm ${
+          className={`text-sm text-center md:text-left ${
             mode === "light" ? "text-[#868c98]" : "text-white"
           }`}
         >
@@ -62,7 +62,7 @@ const DefaultDocumentUpload = ({ mode }: DefaultDocumentUploadProps) => {
 
 export default function UploadDocumentCard() {
   return (
-    <div className="bg-gray-200 h-screen flex items-center justify-center gap-12">
+    <div className="bg-gray-200 p-4 md:h-screen flex flex-col md:flex-row items-center justify-center gap-12">
       {/* light */}
       <DefaultDocumentUpload mode="light" />
       {/* dark */}

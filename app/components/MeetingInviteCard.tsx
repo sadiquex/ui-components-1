@@ -32,14 +32,18 @@ const PersonCard = ({ mode, person }: PersonCardProps) => {
           >
             {person.name}
           </p>
-          <p className={mode === "light" ? "text-gray-600" : "text-[#67767e]"}>
+          <p
+            className={`text-sm ${
+              mode === "light" ? "text-gray-600" : "text-[#67767e]"
+            }`}
+          >
             {person.email}
           </p>
         </span>
       </div>
 
       <div
-        className={`p-4 rounded-lg cursor-pointer ${
+        className={`p-2 md:p-4 rounded-lg cursor-pointer ${
           mode === "light"
             ? "border border-gray-500"
             : "bg-[#67767e] text-white"
@@ -60,7 +64,7 @@ const PersonCard = ({ mode, person }: PersonCardProps) => {
 const BlankMeetingInviteCard = ({ mode }: MeetingInviteCardProps) => {
   return (
     <div
-      className={`w-[490px] min-h-[323px] flex flex-col gap-4 rounded-2xl p-6 ${
+      className={`md:w-[490px] min-h-[323px] flex flex-col gap-4 rounded-2xl p-6 ${
         mode === "light" ? "bg-white" : "bg-[#1a1d1f]"
       }`}
     >
@@ -68,7 +72,7 @@ const BlankMeetingInviteCard = ({ mode }: MeetingInviteCardProps) => {
         {/* left */}
         <div className="flex flex-col">
           <h4
-            className={`font-medium text-2xl ${
+            className={`font-medium text-lg md:text-2xl ${
               mode === "light" ? "" : "text-white"
             }`}
           >
@@ -80,7 +84,7 @@ const BlankMeetingInviteCard = ({ mode }: MeetingInviteCardProps) => {
         </div>
         {/* right */}
         <div className="flex items-center gap-2 text-[#8e59ff]">
-          <span className="flex items-center gap-1 text-lg">
+          <span className="hidden sm:flex items-center gap-1 text-lg whitespace-nowrap ">
             <LuLink size={26} /> Copy Link
           </span>
           <IoCloseSharp
@@ -134,13 +138,20 @@ const BlankMeetingInviteCard = ({ mode }: MeetingInviteCardProps) => {
           <PersonCard mode={mode} person={person} key={i} />
         ))}
       </div>
+
+      {/* show the copy link here on mobile */}
+      <div className="flex items-center gap-2 text-[#8e59ff]">
+        <span className="flex sm:hidden items-center gap-1 text-lg whitespace-nowrap">
+          <LuLink size={26} /> Copy Link
+        </span>
+      </div>
     </div>
   );
 };
 
 export default function MeetingInviteCard() {
   return (
-    <div className="bg-gray-200 h-screen flex items-center justify-center gap-12">
+    <div className="bg-gray-200 p-4 h-screen flex flex-col md:flex-row items-center justify-center gap-12">
       {/* light */}
       <BlankMeetingInviteCard mode="light" />
       <BlankMeetingInviteCard mode="dark" />

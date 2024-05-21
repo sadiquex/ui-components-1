@@ -29,21 +29,13 @@ const messages: Message[] = [
   {
     messageStatus: "unread",
     activeStatus: "active",
-    senderName: "Winnifred",
-    sentTime: "Just now",
-    messageContent: "Coming to the office?",
-    senderAvatar: Winnifred,
-  },
-  {
-    messageStatus: "unread",
-    activeStatus: "active",
     senderName: "Bright",
     sentTime: "5m",
     messageContent: "So funny",
     senderAvatar: Bright,
   },
   {
-    messageStatus: "read",
+    messageStatus: "unread",
     activeStatus: "inactive",
     senderName: "Sadique",
     sentTime: "30m",
@@ -52,10 +44,18 @@ const messages: Message[] = [
   },
   {
     messageStatus: "read",
+    activeStatus: "active",
+    senderName: "Winnifred",
+    sentTime: "Just now",
+    messageContent: "Coming to the office?",
+    senderAvatar: Winnifred,
+  },
+  {
+    messageStatus: "read",
     activeStatus: "inactive",
     senderName: "Jasmine",
     sentTime: "2hr",
-    messageContent: "Thank you for the overview. I'm glad we were a...",
+    messageContent: "What did you say was the name of the uber dri...",
     senderAvatar: Jasmine,
   },
 ];
@@ -67,7 +67,7 @@ const MessageCard = ({
   mode,
 }: MessageCardProps) => {
   return (
-    <div className="flex justify-between items-start">
+    <div className="flex justify-between items-center">
       {/* left sisde */}
       <div className="flex gap-2">
         <div className="flex gap-2 relative">
@@ -86,24 +86,32 @@ const MessageCard = ({
         </div>
 
         <div>
-          <p
-            className={`font-semibold ${
-              mode === "light" ? "text-black" : "text-white"
-            }`}
-          >
-            {message.senderName}
-          </p>
+          {/* name and time */}
+          <div className="flex items-center gap-4">
+            <p
+              className={`font-semibold ${
+                mode === "light" ? "text-black" : "text-white"
+              }`}
+            >
+              {message.senderName}
+            </p>
+
+            <span className="text-gray-400 text-sm">{message.sentTime}</span>
+          </div>
+
           <p
             className={`text-sm font-medium ${
               messageStatus === "unread" ? "text-black" : "text-gray-500"
-            } ${mode === "dark" ? "" : "text-white"}`}
+            } ${mode === "light" ? "text-gray-600" : "text-white"}`}
           >
             {message.messageContent}
           </p>
         </div>
       </div>
       {/* right side */}
-      <span className="text-gray-400 text-sm">{message.sentTime}</span>
+      {messageStatus === "unread" && (
+        <span className="bg-blue-500 rounded-full w-2 h-2">&nbsp;</span>
+      )}
     </div>
   );
 };
@@ -112,7 +120,7 @@ const MessageCard = ({
 const DefaultInboxCard = ({ mode }: InboxCardProps) => {
   return (
     <div
-      className={`w-[468px] min-h-[580px] p-6 rounded-md flex flex-col gap-4 ${
+      className={`md:w-[468px] md:min-h-[580px] p-6 rounded-md flex flex-col gap-4 ${
         mode === "light" ? "bg-white" : "bg-[#1a1d1f]"
       }`}
     >
@@ -155,7 +163,7 @@ const DefaultInboxCard = ({ mode }: InboxCardProps) => {
 
 export default function Inbox() {
   return (
-    <div className="bg-gray-200 h-screen flex items-center justify-center gap-12">
+    <div className="bg-gray-200 p-4 md:h-screen flex flex-col md:flex-row items-center justify-center gap-4 md:gap-12">
       {/* light */}
       <DefaultInboxCard mode="light" />
       {/* dark */}
